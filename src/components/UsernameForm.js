@@ -9,28 +9,53 @@ export const UsernameForm = (props) => {
   const [username, setUsername] = useState("");
   const [gamename, setGamename] = useState("");
   const [review, setReview] = useState("");
+  const [allGames, setAllGames] = useState([]);
+  // const [gameInfo, setGameInfo] = useState({
+  //   username: '',
+  //   gamename: '',
+  //   review: ''
+  // });
 
-  const onSubmit = (e) =>{
+  const onSubmit = (e) => {
     e.preventDefault();
-    if (username) {
-      props.addUsername(username);
-      setUsername('')
-      console.log(username);
-// Do I need 2 more if/else statements for game and review?  How does this work?
-    } else {
-      console.log('invalid username input');
-    }
-  };
+    setAllGames([...allGames, username, gamename, review])
+    console.log(allGames)
+    setUsername('');
+    setGamename('');
+    setReview('');
+  }
+
+  const handleChange = (e) => {
+    setUsername(e.target.value)
+    setGamename(e.target.value)
+    setReview(e.target.value)
+  }
+//   const onSubmit = (e) =>{
+//     e.preventDefault();
+//     if (username && gamename && review) {
+//       // props.addUsername(username);
+//       props.addGame({username, gamename, review});
+//       setUsername('');
+//       setGamename('');
+//       setReview('');
+//       console.log(username);
+// // Do I need 2 more if/else statements for game and review?  How does this work?
+//     } else {
+//       console.log('invalid username input');
+//     }
+//   };
 
   return (
+    
     <form onSubmit={onSubmit}>
       <label>Enter your username: 
         <br />
         <input
           type="text"
           placeholder='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          // value={gameInfo.username}
+          // onChange={(e) => setUsername(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <br />
@@ -40,8 +65,9 @@ export const UsernameForm = (props) => {
         <input
           type="text"
           placeholder='game'
-          value={gamename}
-          onChange={(e) => setGamename(e.target.value)}
+          // value={gameInfo.gamename}
+          // onChange={(e) => setGamename(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <br />
@@ -50,8 +76,9 @@ export const UsernameForm = (props) => {
         <br />
         <textarea
           placeholder='your review'
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
+          // value={gameInfo.review}
+          // onChange={(e) => setReview(e.target.value)}
+          onChange={handleChange}
           rows={5}
           cols={65}
         />
