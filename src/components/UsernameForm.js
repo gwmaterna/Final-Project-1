@@ -7,7 +7,7 @@ import React, {useState} from 'react';
 
 export const UsernameForm = (props) => {  
   const [username, setUsername] = useState("");
-  const [game, setGame] = useState("");
+  const [gamename, setGamename] = useState("");
   const [review, setReview] = useState("");
 
   const onSubmit = (e) =>{
@@ -15,6 +15,7 @@ export const UsernameForm = (props) => {
     if (username) {
       props.addUsername(username);
       setUsername('')
+      console.log(username);
 // Do I need 2 more if/else statements for game and review?  How does this work?
     } else {
       console.log('invalid username input');
@@ -39,8 +40,8 @@ export const UsernameForm = (props) => {
         <input
           type="text"
           placeholder='game'
-          value={game}
-          onChange={(e) => setGame(e.target.value)}
+          value={gamename}
+          onChange={(e) => setGamename(e.target.value)}
         />
       </label>
       <br />
