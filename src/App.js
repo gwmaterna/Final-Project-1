@@ -1,15 +1,17 @@
 import React from "react";
 // import ReactDOM from 'react-dom/client';
 import Home from "./Home";
+import UsernameForm from "./components/UsernameForm";
 import Forms from "./Forms";
-import Games from "./Game";
+import GamesList from "./GamesList";
+import Game from "./Game";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import { Button } from "bootstrap";
 // import Button from "react-bootstrap/Button";
 // import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import Alert from "react-bootstrap/Alert";
 // import Card from 'react-bootstrap/Card';
-// import Container from "react-bootstrap/Container";
+import Container from "react-bootstrap/Container";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,8 +24,10 @@ import {
 export default function App() {
   
     return (
+      
       <Router>
         <div>
+          
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -35,19 +39,21 @@ export default function App() {
               <Link to="/forms">Add to our list here!</Link>
             </li>
           </ul>
+          
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
             <Route exact path="/games">
-              <Games />
+              <GamesList />
             </Route>
             <Route path="/forms" >
-              <Forms />
+              <UsernameForm />
             </Route>
           </Switch>
         </div>
       </Router>
+      
     );
 }
 

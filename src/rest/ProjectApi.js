@@ -1,4 +1,5 @@
-const GAMES_ENDPOINT = 'https://apimocha.com/yourfavoritegame/games';
+// const GAMES_ENDPOINT = 'https://apimocha.com/yourfavoritegame/games';
+const GAMES_ENDPOINT = 'https://635046bb3e9fa1244e43053a.mockapi.io/games_API/games';
 
 class ProjectsApi { 
     get = async () => {

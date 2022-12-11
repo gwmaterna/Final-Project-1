@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Game from './Game';
 import { projectsApi } from './rest/ProjectApi';
+import { render } from "react-dom";
 
 export class GamesList extends React.Component {
     state = {
@@ -25,6 +26,7 @@ export class GamesList extends React.Component {
     render() {
         return (
             <div>
+                <h2>Here are all of your favorite games!</h2>
                 {this.state.games.map((game) => (
                     <Game
                         game = {game}
@@ -36,3 +38,5 @@ export class GamesList extends React.Component {
         )
     }
 }
+
+export default GamesList;

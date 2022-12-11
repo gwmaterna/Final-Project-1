@@ -2,34 +2,53 @@ import React, {useState} from 'react';
 // import { ReactDOM } from 'react';
 // import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import { Button } from "bootstrap";
+// import App from '../App';
+import Button from "react-bootstrap/Button";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Alert from "react-bootstrap/Alert";
+import Card from 'react-bootstrap/Card';
+import Container from "react-bootstrap/Container";
+import { Form } from 'react-bootstrap';
 
 // function UsernameForm() {
 
 export const UsernameForm = (props) => {  
-  const [username, setUsername] = useState("");
-  const [gamename, setGamename] = useState("");
-  const [review, setReview] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [gamename, setGamename] = useState("");
+  // const [review, setReview] = useState("");
+
   const [allGames, setAllGames] = useState([]);
-  // const [gameInfo, setGameInfo] = useState({
-  //   username: '',
-  //   gamename: '',
-  //   review: ''
-  // });
+
+  const [gameInfo, setGameInfo] = useState({
+    username: '',
+    gamename: '',
+    review: '',
+  });
+
+  const handleChange = (e) => {
+    setGameInfo({...gameInfo, [e.target.name]: e.target.value});
+    
+    // setUsername(e.target.value)
+    // setGamename(e.target.value)
+    // setReview(e.target.value)
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setAllGames([...allGames, username, gamename, review])
+    
+    setAllGames([...allGames, gameInfo]);
     console.log(allGames)
-    setUsername('');
-    setGamename('');
-    setReview('');
-  }
+    setGameInfo({
+      username:(''),
+      gamename:(''),
+      review:(''),
+    });
+    
+  };
 
-  const handleChange = (e) => {
-    setUsername(e.target.value)
-    setGamename(e.target.value)
-    setReview(e.target.value)
-  }
+
 //   const onSubmit = (e) =>{
 //     e.preventDefault();
 //     if (username && gamename && review) {
@@ -46,46 +65,63 @@ export const UsernameForm = (props) => {
 //   };
 
   return (
-    
-    <form onSubmit={onSubmit}>
-      <label>Enter your username: 
-        <br />
-        <input
+  <Container className='mx-auto'> 
+    <h2>Fill out these forms to contribute:</h2><br />
+    <Card> 
+    <Card.Body> 
+       
+    <Form onSubmit={onSubmit}>
+    <Form.Group className="mb-3" controlId="formBasicUsername">
+      <Form.Label>Enter your username: 
+        
+        <Form.Control 
           type="text"
           placeholder='username'
-          // value={gameInfo.username}
+          value={gameInfo.username}
+          name="username"
           // onChange={(e) => setUsername(e.target.value)}
           onChange={handleChange}
         />
-      </label>
-      <br />
-      <br />
-      <label>Enter your favorite game:
-        <br />
-        <input
+      </Form.Label>
+    </Form.Group>  
+      
+    <Form.Group className="mb-3" controlId="formBasicGamename">  
+      <Form.Label>Enter your favorite game:
+        
+        <Form.Control
           type="text"
           placeholder='game'
-          // value={gameInfo.gamename}
+          value={gameInfo.gamename}
+          name="gamename"
           // onChange={(e) => setGamename(e.target.value)}
           onChange={handleChange}
         />
-      </label>
-      <br />
-      <br />      
-      <label>And enter why you love it!
+      </Form.Label>
+    </Form.Group>   
+      
+    <Form.Group className="mb-3" controlId="formBasicReview">        
+      <Form.Label>And enter why you love it!
         <br />
         <textarea
           placeholder='your review'
-          // value={gameInfo.review}
+          value={gameInfo.review}
+          name="review"
           // onChange={(e) => setReview(e.target.value)}
           onChange={handleChange}
           rows={5}
-          cols={65}
+          cols={60}
         />
-      </label>
-      <br />
-      <button className='btn btn-primary' type='submit'>Submit</button>
-    </form>
+      </Form.Label>
+    </Form.Group>  
+      
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+    </Card.Body>
+    </Card>
+    
+  </Container>  
   );
 }
 
